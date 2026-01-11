@@ -84,7 +84,7 @@ html_content = """
 </head>
 <body>
     <div class="container">
-        <h1>Welcome To VJ Disk!</h1>
+        <h1>Welcome To FluxDrive!</h1>
         <p>Your ultimate destination for streaming and sharing videos!</p>
         <p>Explore a world of entertainment at your fingertips.</p>
         <button class="button" onclick="alert('Explore Now!')">Get Started</button>
@@ -269,3 +269,4 @@ async def media_streamer(request: web.Request, id: int, secure_hash: str):
             "Accept-Ranges": "bytes",
         },
     )
+
