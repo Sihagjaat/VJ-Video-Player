@@ -1,121 +1,555 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VJ Video Player - Watch Online</title>
+    
+    <!-- Adsterra Script 1 - Banner/Native Ads -->
+    <script src="https://pl28536872.effectivegatecpm.com/e7/77/82/e777826c5b5ced68f6bd82d00fb2edc5.js"></script>
+    
+    <!-- Adsterra Script 2 - Banner/Native Ads -->
+    <script src="https://pl28536788.effectivegatecpm.com/b3/00/89/b300894535797cd9fb37cef5b4da3fc4.js"></script>
+    
+    <!-- Video.js CSS -->
+    <link href="https://vjs.zencdn.net/8.10.0/video-js.css" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-  <title>%s | FluxDrive</title>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 10px;
+        }
 
-  <link rel="shortcut icon" href="https://nwibmpklisjvesabemhj.supabase.co/storage/v1/object/public/room-files/ab79056e-8b47-4f2d-a475-17caf8ffd165/1768099967214_Gemini_Generated_Image_kz0dsvkz0dsvkz0d.png">
-  <meta property="og:image" content="https://nwibmpklisjvesabemhj.supabase.co/storage/v1/object/public/room-files/ab79056e-8b47-4f2d-a475-17caf8ffd165/1768099967214_Gemini_Generated_Image_kz0dsvkz0dsvkz0d.png">
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+        /* Header Ad Container */
+        .ad-container-header {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 15px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
 
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        .ad-label {
+            font-size: 10px;
+            color: #999;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
 
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-  <link rel="stylesheet" href="https://cdn.plyr.io/3.6.9/plyr.css">
+        /* Main Content Grid */
+        .content-wrapper {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
 
-  <script src="https://cdn.tailwindcss.com"></script>
+        @media (min-width: 1024px) {
+            .content-wrapper {
+                grid-template-columns: 1fr 320px;
+            }
+        }
+
+        /* Video Container */
+        .video-container {
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        /* File Info */
+        .file-info {
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .file-info h1 {
+            font-size: 22px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .file-meta {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .file-meta span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* Video Player */
+        .video-wrapper {
+            position: relative;
+            background: #000;
+        }
+
+        .video-js {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 16/9;
+        }
+
+        /* Sidebar Ads */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .ad-container-sidebar {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 12px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            min-height: 250px;
+        }
+
+        /* Bottom Ad Container */
+        .ad-container-bottom {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 12px;
+            padding: 15px;
+            margin-top: 15px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Quality Selector */
+        .quality-selector {
+            padding: 15px 20px;
+            background: #f8f9fa;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .quality-label {
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .quality-buttons {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .quality-btn {
+            padding: 8px 16px;
+            background: white;
+            border: 2px solid #667eea;
+            color: #667eea;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .quality-btn:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(102, 126, 234, 0.3);
+        }
+
+        .quality-btn.active {
+            background: #667eea;
+            color: white;
+        }
+
+        /* Download Button */
+        .download-section {
+            padding: 15px 20px;
+            background: #f8f9fa;
+            border-top: 1px solid #e0e0e0;
+            text-align: center;
+        }
+
+        .download-btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+        }
+
+        /* Loading Overlay */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            opacity: 1;
+            transition: opacity 0.5s ease;
+        }
+
+        .loading-overlay.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .loading-content {
+            text-align: center;
+            color: white;
+        }
+
+        .spinner {
+            border: 4px solid rgba(255, 255, 255, 0.1);
+            border-top: 4px solid white;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .loading-subtext {
+            font-size: 14px;
+            opacity: 0.7;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .file-info h1 {
+                font-size: 18px;
+            }
+            
+            .file-meta {
+                font-size: 12px;
+            }
+            
+            .quality-btn {
+                padding: 6px 12px;
+                font-size: 12px;
+            }
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: white;
+            margin-top: 20px;
+        }
+
+        .footer a {
+            color: white;
+            text-decoration: underline;
+        }
+    </style>
 </head>
-
-<body class="bg-gradient-to-bl from-yellow-500 via-red-600 to-orange-500 min-h-screen">
-
-  <!-- Navbar -->
-  <nav class="navbar bg-dark px-4 py-3 shadow-lg">
-    <a class="navbar-brand fw-bold" href="https://telegram.me/FluxDrives">
-      <span class="bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-500 text-2xl">
-        FluxDrive
-      </span>
-    </a>
-  </nav>
-
-  <!-- File Name -->
-  <section class="bg-black text-light py-4">
-    <div class="container d-flex justify-content-center">
-      <div class="text-center max-w-2xl">
-        <p class="fw-bold mb-0">
-          <span id="myDiv"
-                class="card-title wow animate__animated animate__fadeInRight">
-            %s
-          </span>
-        </p>
-      </div>
+<body>
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-content">
+            <div class="spinner"></div>
+            <div class="loading-text">🎬 Loading Video Player...</div>
+            <div class="loading-subtext">Please wait a moment</div>
+        </div>
     </div>
-  </section>
 
-  <!-- Action Area -->
-  <main class="container d-flex justify-content-center align-items-center min-h-[60vh]">
-    <a 
-      href="https://www.effectivegatecpm.com/f3s66q5u?key=a72949a34fd6ec42f0ca9bb17637a4e6"
-      onclick="setTimeout(() => { window.location.href='%s'; }, 500);"
-      class="w-100 d-flex justify-content-center text-decoration-none"
-    >
-      <div
-        class="col-lg-4 col-12 text-center text-white bg-dark rounded-4 py-4
-               hover:bg-gradient-to-r from-pink-500 to-violet-500
-               hover:shadow-lg hover:-translate-y-1 transition-all duration-300
-               wow animate__animated animate__rubberBand">
-
-        <div class="text-xl fw-bold">
-          Download
+    <div class="container">
+        <!-- Header Ad - Adsterra Banner -->
+        <div class="ad-container-header">
+            <div class="ad-label">Advertisement</div>
+            <div id="header-ad">
+                <!-- Adsterra Banner Ad will appear here -->
+            </div>
         </div>
 
-        <div class="text-sm opacity-75 mt-1">
-          _404 Error · _%s
+        <div class="content-wrapper">
+            <!-- Main Video Section -->
+            <div class="main-content">
+                <div class="video-container">
+                    <!-- File Info -->
+                    <div class="file-info">
+                        <h1 id="fileName">Sample Video File.mp4</h1>
+                        <div class="file-meta">
+                            <span>📁 <span id="fileSize">Loading...</span></span>
+                            <span>⏱️ <span id="fileDuration">--:--</span></span>
+                            <span>👁️ <span id="viewCount">0</span> Views</span>
+                        </div>
+                    </div>
+
+                    <!-- Video Player -->
+                    <div class="video-wrapper">
+                        <video
+                            id="my-player"
+                            class="video-js vjs-big-play-centered"
+                            controls
+                            preload="auto"
+                            poster="https://i.ibb.co/Yz4y12n/photo-2025-06-16-10-05-31-7516486294654943252.jpg">
+                            <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4">
+                            <p class="vjs-no-js">
+                                To view this video please enable JavaScript
+                            </p>
+                        </video>
+                    </div>
+
+                    <!-- Quality Selector -->
+                    <div class="quality-selector">
+                        <div class="quality-label">Select Quality:</div>
+                        <div class="quality-buttons">
+                            <button class="quality-btn active" data-quality="auto">Auto</button>
+                            <button class="quality-btn" data-quality="1080p">1080p HD</button>
+                            <button class="quality-btn" data-quality="720p">720p HD</button>
+                            <button class="quality-btn" data-quality="480p">480p</button>
+                            <button class="quality-btn" data-quality="360p">360p</button>
+                        </div>
+                    </div>
+
+                    <!-- Download Section -->
+                    <div class="download-section">
+                        <a href="#" class="download-btn" id="downloadBtn">
+                            📥 Download Video
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar Ads -->
+            <div class="sidebar">
+                <!-- Sidebar Ad 1 -->
+                <div class="ad-container-sidebar">
+                    <div class="ad-label">Advertisement</div>
+                    <div id="sidebar-ad-1">
+                        <!-- Adsterra Native/Banner Ad -->
+                    </div>
+                </div>
+
+                <!-- Sidebar Ad 2 -->
+                <div class="ad-container-sidebar">
+                    <div class="ad-label">Advertisement</div>
+                    <div id="sidebar-ad-2">
+                        <!-- Adsterra Native/Banner Ad -->
+                    </div>
+                </div>
+            </div>
         </div>
 
-      </div>
-    </a>
-  </main>
+        <!-- Bottom Ad - Full Width Banner -->
+        <div class="ad-container-bottom">
+            <div class="ad-label">Advertisement</div>
+            <div id="bottom-ad">
+                <!-- Adsterra Banner Ad -->
+            </div>
+        </div>
 
-  <!-- Footer -->
-  <footer class="bg-dark text-light mt-auto">
-    <hr class="m-0">
-
-    <div class="text-center text-xs p-3" style="background-color: rgba(0,0,0,0.2);">
-      © <script>document.write(new Date().getFullYear())</script>
-      <a href="https://youtube.com/@Tech_VJ"
-         class="bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-500 fw-bold px-1">
-        Tech VJ
-      </a>
-      · All Rights Reserved
+        <!-- Footer -->
+        <div class="footer">
+            <p>Powered by VJ Video Player | <a href="#">Terms</a> | <a href="#">Privacy</a></p>
+        </div>
     </div>
-  </footer>
 
-  <!-- Existing scripts -->
-  <script src="https://cdn.plyr.io/3.6.12/plyr.js"></script>
+    <!-- Video.js Library -->
+    <script src="https://vjs.zencdn.net/8.10.0/video.min.js"></script>
 
-  <script>
-    const controls = [
-      'play-large','rewind','play','fast-forward','progress',
-      'current-time','duration','mute','volume','captions',
-      'settings','pip','airplay','download','fullscreen'
-    ];
+    <!-- Adsterra Popunder Script -->
+    <script>
+        // Popunder configuration
+        var popunderUrl = "https://www.effectivegatecpm.com/f3s66q5u?key=a72949a34fd6ec42f0ca9bb17637a4e6";
+        var popunderShown = false;
 
-    document.addEventListener('DOMContentLoaded', () => {
-      Plyr.setup('.player', { controls });
-    });
-  </script>
+        // Show popunder on first user interaction
+        document.addEventListener('click', function() {
+            if (!popunderShown) {
+                window.open(popunderUrl, '_blank');
+                popunderShown = true;
+            }
+        }, { once: true });
+    </script>
 
-  <script>new WOW().init();</script>
+    <!-- Main JavaScript -->
+    <script>
+        // Remove loading overlay after page loads
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                document.getElementById('loadingOverlay').classList.add('hidden');
+            }, 1000);
+        });
 
-  <script>
-    var div = document.getElementById('myDiv');
-    var text = div.textContent;
-    if (text.length > 60) {
-      div.textContent = text.slice(0, 60) + "....";
-    }
-  </script>
+        // Initialize Video.js Player
+        var player = videojs('my-player', {
+            controls: true,
+            autoplay: false,
+            preload: 'auto',
+            fluid: true,
+            responsive: true,
+            playbackRates: [0.5, 1, 1.5, 2],
+            controlBar: {
+                children: [
+                    'playToggle',
+                    'volumePanel',
+                    'currentTimeDisplay',
+                    'timeDivider',
+                    'durationDisplay',
+                    'progressControl',
+                    'playbackRateMenuButton',
+                    'fullscreenToggle'
+                ]
+            }
+        });
 
-  <!-- EXISTING Pop-under Ad -->
-  <script src="https://pl28536788.effectivegatecpm.com/b3/00/89/b300894535797cd9fb37cef5b4da3fc4.js"></script>
+        // Player Ready Event
+        player.ready(function() {
+            console.log('Player is ready!');
+            
+            // Update duration when metadata loads
+            player.on('loadedmetadata', function() {
+                var duration = player.duration();
+                var minutes = Math.floor(duration / 60);
+                var seconds = Math.floor(duration % 60);
+                document.getElementById('fileDuration').textContent = 
+                    minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
+            });
+        });
 
-  <!-- NEW Social Bar Ad -->
-  <script src="https://pl28536872.effectivegatecpm.com/e7/77/82/e777826c5b5ced68f6bd82d00fb2edc5.js"></script>
+        // Track view count (increment on play)
+        var viewCounted = false;
+        player.on('play', function() {
+            if (!viewCounted) {
+                var viewCount = parseInt(document.getElementById('viewCount').textContent) || 0;
+                document.getElementById('viewCount').textContent = viewCount + 1;
+                viewCounted = true;
+            }
+        });
 
+        // Quality Button Functionality
+        var qualityButtons = document.querySelectorAll('.quality-btn');
+        qualityButtons.forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                // Remove active class from all buttons
+                qualityButtons.forEach(function(b) {
+                    b.classList.remove('active');
+                });
+                
+                // Add active class to clicked button
+                this.classList.add('active');
+                
+                var quality = this.getAttribute('data-quality');
+                console.log('Quality selected:', quality);
+                
+                // Here you can implement quality switching logic
+                // For example, changing video source based on quality
+            });
+        });
+
+        // Download Button
+        document.getElementById('downloadBtn').addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Get current video source
+            var videoSrc = player.currentSrc();
+            
+            if (videoSrc) {
+                // Create temporary link and trigger download
+                var a = document.createElement('a');
+                a.href = videoSrc;
+                a.download = document.getElementById('fileName').textContent || 'video.mp4';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+            } else {
+                alert('Video source not available');
+            }
+        });
+
+        // Keyboard Shortcuts
+        document.addEventListener('keydown', function(e) {
+            // Space = Play/Pause
+            if (e.code === 'Space' && e.target.tagName !== 'INPUT') {
+                e.preventDefault();
+                if (player.paused()) {
+                    player.play();
+                } else {
+                    player.pause();
+                }
+            }
+            
+            // F = Fullscreen
+            if (e.code === 'KeyF') {
+                if (player.isFullscreen()) {
+                    player.exitFullscreen();
+                } else {
+                    player.requestFullscreen();
+                }
+            }
+            
+            // M = Mute
+            if (e.code === 'KeyM') {
+                player.muted(!player.muted());
+            }
+            
+            // Arrow Left = Rewind 10s
+            if (e.code === 'ArrowLeft') {
+                player.currentTime(Math.max(0, player.currentTime() - 10));
+            }
+            
+            // Arrow Right = Forward 10s
+            if (e.code === 'ArrowRight') {
+                player.currentTime(Math.min(player.duration(), player.currentTime() + 10));
+            }
+        });
+
+        // Right-click protection (optional)
+        document.addEventListener('contextmenu', function(e) {
+            if (e.target.tagName === 'VIDEO') {
+                e.preventDefault();
+                return false;
+            }
+        });
+
+        // Update file size (you can set this dynamically)
+        document.getElementById('fileSize').textContent = '245 MB';
+    </script>
 </body>
 </html>
