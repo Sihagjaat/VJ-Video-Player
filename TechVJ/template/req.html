@@ -1,155 +1,227 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Quality - VJ Video Player</title>
+    
+    <!-- Adsterra Ads -->
+    <script src="https://pl28536872.effectivegatecpm.com/e7/77/82/e777826c5b5ced68f6bd82d00fb2edc5.js"></script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-  <title>{{file_name}} | {{name}}</title>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
 
-  <!-- Icon / Preview -->
-  <link rel="shortcut icon" href="https://nwibmpklisjvesabemhj.supabase.co/storage/v1/object/public/room-files/ab79056e-8b47-4f2d-a475-17caf8ffd165/1768099967214_Gemini_Generated_Image_kz0dsvkz0dsvkz0d.png">
-  <meta property="og:image" content="https://nwibmpklisjvesabemhj.supabase.co/storage/v1/object/public/room-files/ab79056e-8b47-4f2d-a475-17caf8ffd165/1768099967214_Gemini_Generated_Image_kz0dsvkz0dsvkz0d.png">
+        .container {
+            max-width: 600px;
+            width: 100%;
+        }
 
-  <!-- CSS / JS (unchanged) -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+        /* Header Ad */
+        .ad-container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 20px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
 
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        .ad-label {
+            font-size: 10px;
+            color: #999;
+            margin-bottom: 8px;
+        }
 
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-  <link rel="stylesheet" href="https://cdn.plyr.io/3.6.9/plyr.css">
+        /* Main Card */
+        .quality-card {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
 
-  <script src="https://cdn.tailwindcss.com"></script>
+        .icon {
+            font-size: 60px;
+            margin-bottom: 20px;
+        }
 
-  <!-- Click Counter Logic (unchanged) -->
-  <script>
-    var userId = "{{user_id}}";
-    var hasSpent30Seconds = false;
-    var clickCounted = false;
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 26px;
+        }
 
-    setTimeout(() => hasSpent30Seconds = true, 30000);
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
 
-    document.addEventListener("click", function () {
-      if (hasSpent30Seconds && !clickCounted) {
-        clickCounted = true;
-        fetch('/click-counter', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ user_id: userId })
-        }).catch(() => {});
-      }
-    });
-  </script>
+        .file-info {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 30px;
+        }
+
+        .file-info p {
+            margin: 5px 0;
+            color: #555;
+            font-size: 14px;
+        }
+
+        .quality-options {
+            display: grid;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .quality-btn {
+            display: block;
+            width: 100%;
+            padding: 16px 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .quality-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .quality-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            margin-left: 10px;
+        }
+
+        .direct-link {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .direct-link a {
+            color: #667eea;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .direct-link a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 480px) {
+            .quality-card {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 22px;
+            }
+            
+            .quality-btn {
+                padding: 14px 16px;
+                font-size: 14px;
+            }
+        }
+    </style>
 </head>
+<body>
+    <div class="container">
+        <!-- Header Ad -->
+        <div class="ad-container">
+            <div class="ad-label">Advertisement</div>
+            <div id="header-ad">
+                <!-- Adsterra ad will appear here -->
+            </div>
+        </div>
 
-<body class="bg-black text-light min-h-screen d-flex flex-column">
+        <!-- Quality Selection Card -->
+        <div class="quality-card">
+            <div class="icon">🎬</div>
+            <h1>Select Video Quality</h1>
+            <p class="subtitle">Choose your preferred quality to stream</p>
 
-<!-- Navbar -->
-<nav class="navbar bg-dark px-4 py-3 shadow">
-  <a class="navbar-brand fw-bold" href="{{link}}">
-    <span class="bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-500 text-2xl">
-      {{name}}
-    </span>
-  </a>
-</nav>
+            <div class="file-info">
+                <p><strong>📁 File Name:</strong> <span id="fileName">Sample Video.mp4</span></p>
+                <p><strong>📊 File Size:</strong> <span id="fileSize">245 MB</span></p>
+                <p><strong>⏱️ Duration:</strong> <span id="fileDuration">12:30</span></p>
+            </div>
 
-<!-- File Name -->
-<section class="py-3 border-bottom border-danger">
-  <div class="container text-center">
-    <span id="myDiv"
-          class="fw-bold wow animate__animated animate__fadeInRight">
-      {{file_name}}
-    </span>
-  </div>
-</section>
+            <div class="quality-options">
+                <a href="#" class="quality-btn" data-quality="1080p">
+                    🎥 Full HD (1080p)
+                    <span class="quality-badge">Best Quality</span>
+                </a>
+                <a href="#" class="quality-btn" data-quality="720p">
+                    📺 HD (720p)
+                    <span class="quality-badge">Recommended</span>
+                </a>
+                <a href="#" class="quality-btn" data-quality="480p">
+                    📱 SD (480p)
+                    <span class="quality-badge">Mobile Friendly</span>
+                </a>
+                <a href="#" class="quality-btn" data-quality="360p">
+                    📶 Low (360p)
+                    <span class="quality-badge">Save Data</span>
+                </a>
+            </div>
 
-<!-- Player -->
-<section class="container my-4">
-  <div class="row justify-content-center">
-    <div class="col-lg-10 col-12 wow animate__animated animate__fadeInLeft">
-      <div class="border border-danger rounded-4 overflow-hidden">
-        <video class="player w-100" playsinline controls>
-          {% if file_url %}
-          <source src="{{file_url}}" type="video/mp4" size="480">
-          {% endif %}
-          {% if file_url_two %}
-          <source src="{{file_url_two}}" type="video/mp4" size="720">
-          {% endif %}
-          {% if file_url_three %}
-          <source src="{{file_url_three}}" type="video/mp4" size="1080">
-          {% endif %}
-        </video>
-      </div>
-    </div>
-  </div>
-
-  <!-- Telegram Button -->
-  <div class="text-center mt-4">
-    <a href="{{link}}" target="_blank"
-       class="inline-block bg-blue-600 hover:bg-blue-700 text-black fw-bold py-2 px-4 rounded">
-      Join Telegram Channel
-    </a>
-  </div>
-</section>
-
-<!-- Alerts -->
-<section class="container mb-4">
-  <div class="row justify-content-center gap-3">
-    <div class="col-lg-9 col-11 bg-danger text-center py-2 rounded-4 fw-bold text-sm wow animate__animated animate__fadeIn">
-      Video not playing? Your browser may not support the codec. Try another browser.
+            <div class="direct-link">
+                <a href="#" id="directLink">⚡ Or click here for direct stream</a>
+            </div>
+        </div>
     </div>
 
-    <div class="col-lg-9 col-11 bg-danger text-center py-2 rounded-4 fw-bold text-sm wow animate__animated animate__fadeIn">
-      ⚠️ Disclaimer: We do not host content. All media is sourced from third-party platforms.
-      Use at your own risk and verify legality in your region.
-    </div>
-  </div>
-</section>
-
-<!-- Footer -->
-<footer class="bg-dark mt-auto">
-  <div class="text-center text-xs py-3" style="background: rgba(0,0,0,0.2)">
-    © <script>document.write(new Date().getFullYear())</script>
-    <a href="{{link}}"
-       class="bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-500 fw-bold px-1">
-      {{name}}
-    </a>
-    · All Rights Reserved
-  </div>
-</footer>
-
-<!-- Scripts (unchanged behavior) -->
-<script src="https://cdn.plyr.io/3.6.9/plyr.js"></script>
-<script>
-  new WOW().init();
-
-  const controls = [
-    'play-large','rewind','play','fast-forward','progress',
-    'current-time','duration','mute','volume','captions',
-    'settings','pip','airplay','fullscreen'
-  ];
-
-  document.addEventListener('DOMContentLoaded', () => {
-    Plyr.setup('.player', { controls });
-  });
-
-  const div = document.getElementById('myDiv');
-  if (div.textContent.length > 60) {
-    div.textContent = div.textContent.slice(0, 60);
-  }
-
-  document.addEventListener("contextmenu", e => e.preventDefault());
-  document.addEventListener("keydown", e => {
-    if (
-      e.key === 'F12' ||
-      (e.ctrlKey && e.shiftKey && e.key === 'I') ||
-      (e.ctrlKey && e.key === 'u') ||
-      e.ctrlKey || e.shiftKey || e.altKey
-    ) e.preventDefault();
-  });
-</script>
-
+    <script>
+        // Get file ID from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const fileId = urlParams.get('id') || 'demo123';
+        
+        // Set quality button links
+        document.querySelectorAll('.quality-btn').forEach(btn => {
+            const quality = btn.getAttribute('data-quality');
+            btn.href = `/stream/${fileId}?quality=${quality}`;
+        });
+        
+        // Direct link
+        document.getElementById('directLink').href = `/stream/${fileId}`;
+        
+        // You can dynamically update file info from server
+        // fetch(`/api/file-info/${fileId}`)
+        //     .then(res => res.json())
+        //     .then(data => {
+        //         document.getElementById('fileName').textContent = data.name;
+        //         document.getElementById('fileSize').textContent = data.size;
+        //         document.getElementById('fileDuration').textContent = data.duration;
+        //     });
+    </script>
 </body>
 </html>
